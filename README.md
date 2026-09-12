@@ -28,7 +28,7 @@ npm run build
 npm run size
 ```
 
-Current submission ZIP: **11,591 / 13,312 bytes**. `build` and `size` both regenerate `dist/index.html` and `dist/deckbater.zip`, print exact archive bytes, and fail above the absolute 13,312-byte ceiling. Terser minifies readable sources; fixed ZIP metadata and DEFLATE produce reproducible archives with the same Node version. The ZIP contains only `index.html`, including all code, maps, pixel glyphs, graphics and procedural audio. No runtime downloads, external requests, fonts, assets, libraries or backend.
+Current submission ZIP: **11,591 / 13,312 bytes**. `build` and `size` both regenerate `dist/index.html` and `dist/deckbater.zip`, print exact archive bytes, and fail above the absolute 13,312-byte ceiling. Terser minifies readable sources; pinned Pako compression and fixed ZIP metadata reproduce the archive across platforms without depending on the host's zlib. The ZIP contains only `index.html`, including all code, maps, pixel glyphs, graphics and procedural audio. No runtime downloads, external requests, fonts, assets, libraries or backend.
 
 Open `dist/index.html` directly, or serve `dist/` with any static server. `site/index.html` redirects to this build for the original prototype's entry point.
 

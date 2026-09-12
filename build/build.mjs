@@ -1,6 +1,8 @@
 // Single-file contest build; fixed ZIP metadata and raw DEFLATE give repeatable bytes.
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
-import { deflateRawSync } from 'node:zlib';
+// Native zlib differs between Node distributions (e.g. Android and official Linux).
+// Pin the JS compressor so the submitted archive is identical on both.
+import { deflateRaw } from 'pako';
 import { minify } from 'terser';
 const limit = 13312;
 const root = new URL('../', import.meta.url);
@@ -9,7 +11,7 @@ const source = await read('src/story.js') + '\n' + await read('src/game.js');
 const result = await minify(source, { module: false, toplevel: true,
   compress: { passes: 3, unsafe_arrows: true }, mangle: true, format: { comments: false } });
 const html = (await read('src/index.html')).replace('/* GAME */', result.code).replace(/\n\s*/g, '');
-const payload = Buffer.from(html), compressed = deflateRawSync(payload, { level: 9 });
+const payload = Buffer.from(html), compressed = Buffer.from(deflateRaw(payload, { level: 9 }));
 let crc = 0xffffffff;
 for (const byte of payload) {
   crc ^= byte;

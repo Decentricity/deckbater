@@ -26,6 +26,7 @@ try {
   await writeFile(join(fixture, 'src/index.html'), '<script>/* GAME */</script>');
   const builder = (await readFile(new URL('build/build.mjs', root), 'utf8'))
     .replace("from 'terser'", 'from ' + JSON.stringify(import.meta.resolve('terser')))
+    .replace("from 'pako'", 'from ' + JSON.stringify(import.meta.resolve('pako')))
     .replace("const root = new URL('../', import.meta.url);", 'const root = new URL(' + JSON.stringify(pathToFileURL(fixture + '/').href) + ');');
   await writeFile(join(fixture, 'builder.mjs'), builder);
   console.log('Expecting a hard failure for the deliberately oversized fixture:');

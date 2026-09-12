@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#191827">
+<link rel="icon" href="data:,">
+<title>DECKBATER — you debate with a deck</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#191827;color:#fff1cb;min-height:100vh;display:grid;place-content:center;font:12px monospace;text-align:center}canvas{display:block;margin:auto;image-rendering:pixelated;image-rendering:crisp-edges;touch-action:none;outline:2px solid #69718b}p{margin:10px 0 0}button{font:inherit;color:inherit;background:#34364e;border:1px solid #69718b;padding:5px 8px;cursor:pointer}button:focus-visible{outline:2px solid #f4d35e}#readout{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+</style>
+<main>
+<canvas id="game" width="256" height="144" tabindex="0" aria-label="Deckbater. Arrow keys move; E talks. Choose numbered cards and fill their slots. N opens knowledge."></canvas>
+<p>WASD / arrows: move · E: talk · 1–4: choose · Esc: back</p>
+<p><button id="book">N: knowledge</button> <button id="sound">M: sound off</button> <button id="restart">Restart</button></p>
+<div id="readout" aria-live="polite"></div>
+</main>
+<script>
+/* GAME */
+</script>
+</html>

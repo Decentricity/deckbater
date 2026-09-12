@@ -1,234 +1,48 @@
-# Deckbater
+# DECKBATER
 
-**Deckbater** is a dialogue-heavy retraux RPG where conversation is played with a deck.
+**[Play at deckbater.github.io](https://deckbater.github.io/)** — you debate with a deck.
 
-Instead of choosing between authored dialogue options A/B/C, the player builds responses from **sentence cards** plus **concepts/keywords** learned from the world.
+A complete, tiny retraux RPG about a missing red package, an extremely guilty goblin, and a unicorn with absolutely no rainbow qualifications. Five compact areas, five characters, one mystery, four endings. Made for js13kGames 2026's **Unicorns and Rainbows** theme.
 
-The name is literal: you debate with a deck.
+Start with `YES`, `NO`, `MAYBE`, and `I DUNNO`. Learn reusable sentence cards and fill their typed slots with words discovered around town. Carry one person's testimony into another conversation. Separate claims from confirmed facts, question Iris in terms she understands, and dismantle the Mayor's excuses with evidence from different sources.
 
-## Core idea
+**Knowledge is inventory. Grammar is progression.** This is a card-and-concept system, not a menu of prewritten dialogue choices: 15 card structures and 43 vocabulary/evidence entries. Rainbow colors identify people, objects, places, actions, claims, facts and conditions; the knowledge book also labels their type and source in text.
 
-The player begins socially helpless, with only four caveman cards:
+## Controls
 
-- `YES`
-- `NO`
-- `MAYBE`
-- `I DUNNO`
+- WASD / arrows: walk. E / Enter / Space: interact with the adjacent character or object.
+- 1–4: choose a visible card or compatible concept. Fill each slot, then Enter to play the assembled sentence.
+- Q / R or Page Up / Down: change card/concept pages. Arrows / Tab: navigate cards. Mouse: click cards, words and page arrows.
+- Esc: cancel a sentence or leave a conversation. N: knowledge and current lead. M: optional sound.
+- Restart button: start over; Enter restarts after the credits. Progress is not saved across refreshes.
+- Touch: tap toward a destination to step; tap an adjacent character to talk. Desktop is the primary target.
 
-Talking to people unlocks both:
+## Build and test
 
-1. **Concepts** — people, places, objects, claims, motives, events, relationships.
-2. **Grammar cards** — reusable sentence structures with typed slots.
+Requires Node.js 24 (build verified with 24.13.0). Dependencies are development-only.
 
-Examples:
-
-- `WHAT IS [THING]?`
-- `WHO IS [PERSON]?`
-- `IS [THING] IN [PLACE]?`
-- `WHO HAS [THING]?`
-- `I WANT [THING].`
-- `I AM NOT [CONCEPT].`
-- `IF [CONDITION], THEN [ACTION].`
-- `[PERSON] SAID [CLAIM].`
-
-The player therefore does not unlock dialogue lines. They unlock **language**.
-
-## Knowledge is inventory
-
-Anything meaningful heard in conversation can become a reusable concept.
-
-Example:
-
-> Nara: “Eli probably took my package.”
-
-The player may acquire:
-
-- `ELI`
-- `PACKAGE`
-- `TOOK`
-- an unconfirmed claim tying Eli to the package
-
-Later, those concepts can be inserted into unrelated sentence cards.
-
-This allows the player to construct lines the writer never authored verbatim, while still keeping the game deterministic and compact.
-
-## Facts vs concepts
-
-Deckbater distinguishes between ordinary concepts and stronger knowledge objects.
-
-### Concepts
-Reusable semantic tokens:
-
-- `PACKAGE`
-- `BASEMENT`
-- `ELI`
-- `KEY`
-
-### Facts
-Persistent structured knowledge:
-
-- `NARA HAS KEY`
-- `ELI LIVES IN 2A`
-- `NARA BELIEVES PACKAGE IS IN BASEMENT`
-
-Facts can unlock stronger dialogue constructions later.
-
-### Confidence
-Claims may be:
-
-- confirmed
-- unconfirmed
-- contradicted
-- hearsay
-
-A sentence is not automatically evidence just because the player can say it.
-
-## NPCs have decks too
-
-NPC dialogue should feel like it follows the same conceptual machinery.
-
-An NPC can effectively answer with:
-
-- YES
-- NO
-- DEFLECT
-- LIE
-- ASK BACK
-- THREATEN
-- BARGAIN
-- REVEAL
-
-The player gradually learns to recognize conversational patterns as systems rather than menus.
-
-## Overworld
-
-The game has a small top-down 8-bit-style overworld.
-
-Target feel:
-
-- Game Boy / early NES / tiny JRPG
-- a handful of compact screens
-- chunky 8x8 or 8x16 sprites
-- very small palette
-- tile-based movement
-- NPCs, doors, signs, inspectable objects
-- no large art assets
-
-The overworld is not filler: walking around lets the player discover vocabulary before using it in conversations.
-
-Examples:
-
-- read a sign -> learn a place name
-- inspect a package -> learn a brand or color
-- overhear two NPCs -> acquire a claim
-- enter a room -> learn a new location concept
-
-## MVP
-
-The MVP should prove one loop:
-
-**walk -> talk -> hear concepts -> gain cards -> recombine knowledge -> unlock access -> continue**
-
-Level 1 is **The Red Package**.
-
-The player encounters Nara in a hallway. She claims someone stole her red courier package and suspects Eli. The player begins with only `YES / NO / MAYBE / I DUNNO`, then learns progressively stronger grammar until they can negotiate for the basement key.
-
-The level ends when the player enters the basement and meets Eli beside six unopened packages.
-
-See `SCENARIO_LEVEL_1.md`.
-
-## Retr(8)aux presentation
-
-The art direction should be deliberately fake-old rather than slavishly hardware-accurate.
-
-Priorities:
-
-- crisp nearest-neighbor pixel scaling
-- minimal animation frames
-- expressive portraits or tiny sprites
-- simple card UI layered over the retro world
-- slightly absurd UI typography and sound cues
-- dialogue as the star
-
-The contrast is intentional: an extremely primitive-looking RPG interface hiding a surprisingly expressive language system.
-
-## js13kGames target
-
-Deckbater is being designed for a js13kGames demo, so the architecture should assume an extremely small compressed bundle.
-
-Preferred technical direction:
-
-- vanilla JavaScript
-- one `index.html` for the final build if practical
-- Canvas 2D
-- no external libraries
-- no external assets
-- procedural or bit-packed sprites
-- compact tile maps
-- Web Audio-generated bleeps/chiptune
-- tiny state machine for conversations
-- token IDs instead of repeated prose where useful
-- reusable grammar functions instead of storing every possible sentence
-
-The final demo should remain deterministic and playable offline.
-
-## Suggested data model
-
-Cards can be compact templates:
-
-```js
-{
-  id: 7,
-  text: "IS {thing} IN {place}?",
-  slots: ["thing", "place"]
-}
+```sh
+npm ci --ignore-scripts
+npm test
+npm run build
+npm run size
 ```
 
-Concepts:
+Current submission ZIP: **11,591 / 13,312 bytes**. `build` and `size` both regenerate `dist/index.html` and `dist/deckbater.zip`, print exact archive bytes, and fail above the absolute 13,312-byte ceiling. Terser minifies readable sources; fixed ZIP metadata and DEFLATE produce reproducible archives with the same Node version. The ZIP contains only `index.html`, including all code, maps, pixel glyphs, graphics and procedural audio. No runtime downloads, external requests, fonts, assets, libraries or backend.
 
-```js
-{
-  id: 12,
-  type: "place",
-  text: "BASEMENT"
-}
+Open `dist/index.html` directly, or serve `dist/` with any static server. `site/index.html` redirects to this build for the original prototype's entry point.
+
+`npm test` covers 40 complete story routes, every opening/ending, evidence order, and rejection of unsupported testimony. It also checks ZIP reproduction, README size and the hard-limit failure using an oversized fixture. For an actual production-build playthrough in an installed browser:
+
+```sh
+BROWSER_PATH=/usr/bin/chromium npm run test:browser
+TEST_BROWSER=firefox BROWSER_PATH=/path/to/firefox npm run test:browser
 ```
 
-A player utterance can then be represented as IDs rather than stored prose:
+The browser suite serves the minified build over HTTP, walks all five maps, uses keyboard and mouse inputs, constructs every required sentence, checks the ending/restart/refresh, captures screenshots and rejects console errors or external requests. Chrome and Firefox run sequentially in GitHub Actions. On Termux, use `TEST_OUTPUT=/storage/emulated/0/Download/deckbater-test node test/browser.mjs` directly to save process overhead; its adapter uses the installed Debian Chromium, with one process and no crashpad. Firefox testing runs in CI. All temporary servers and browsers close when tests finish.
 
-```js
-[7, 3, 12]
-```
+## Source and publishing
 
-Meaning:
+This repository, **[Decentricity/deckbater](https://github.com/Decentricity/deckbater)**, owns `src/`, `build/`, tests, and the generated competition artifacts. `SCENARIO_LEVEL_1.md` preserves the original Nara design and documents its continuation.
 
-> IS [PACKAGE] IN [BASEMENT]?
-
-NPC responses should operate on structured intent and world state rather than exact strings.
-
-## Design principle
-
-Deckbater should make the player feel like they are slowly learning how to speak.
-
-Early game:
-
-> YES.
-
-Mid game:
-
-> WHO HAS [KEY]?
-
-Later game:
-
-> IF [CLAIM A] AND [CLAIM B], WHY DID [PERSON] SAY [CONTRADICTORY CLAIM]?
-
-Conversation becomes a form of programming.
-
-## Current repository plan
-
-- `README.md` — concept and direction
-- `AGENTS.md` — implementation brief for coding agents
-- `SCENARIO_LEVEL_1.md` — scripted MVP encounter
-- `site/index.html` — tiny playable browser stub
-
-The production target should eventually live at the `deckbater.github.io` organization Pages repository.
+**[deckbater/deckbater.github.io](https://github.com/deckbater/deckbater.github.io)** is only the deployment target. Its root `index.html` is a byte-for-byte copy of `dist/index.html`, published from `main` by GitHub Pages. Make changes here, pass tests and size checks, then copy the valid build there and commit/push both repositories. Never maintain a separate Pages implementation.

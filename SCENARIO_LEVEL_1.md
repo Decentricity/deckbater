@@ -1,4 +1,10 @@
-# Level 1 MVP — The Red Package
+# Level 1 — The Red Package
+
+This is the original tutorial design, retained as the foundation of the complete
+game. The shipped version keeps Nara's opening, suspicion, key bargain and typed
+grammar progression. Low-value words/trust counters were consolidated for the ZIP
+budget; facts retain source/confirmation metadata. The basement now begins Act 2
+instead of ending the prototype. See the continuation below.
 
 ## Purpose
 
@@ -383,6 +389,21 @@ The original four caveman cards are shown prominently again:
 
 All newly learned cards remain available underneath.
 
-Cut to black / demo end.
+Continue into Act 2.
 
 The punchline is mechanical: the player has gained sophisticated language, but sometimes the primitive `NO` card is still exactly what they need.
+
+---
+
+## Complete-game continuation (spoilers)
+
+The five screens are courtyard → basement → market → park → town square. The market connects the courtyard, park and square. All walks are short, and the player may revisit every character.
+
+- Eli admits stealing other deliveries. Asking about the package, locating it, accusing him with Nara's sourced claim, or asking if he took it reveals that a courier took the red package to Town Hall. Inspecting his boxes independently confirms the red package is absent.
+- Vee in the market requires `ELI SAID COURIER TOOK PACKAGE`. Vee confirms taking it and says the Mayor ordered the prism for the rainbow projector. This unlocks yes/no interrogation and contradiction grammar. An optional biscuit exchange links Vee to Iris.
+- Iris in the park first needs the original `YES` card to accept a snack. Ask `DID IRIS AUTHORIZE THE TAKING`, `DID IRIS MAKE THE RAINBOW`, and `DID IRIS POSE UNDER THE PROJECTOR`. Her hoof answers and physical reactions establish non-consent, non-magic, and dislike of the projector. Asking about leaving gives an optional extra fact.
+- Examine the projector beside Town Hall: Nara's addressed red package and prism are inside an electric machine.
+- The Mayor claims Iris makes rainbows and agreed to the arrangement. Four challenges can be played in any order: `ELI SAID COURIER TOOK PACKAGE`; `VEE SAID MAYOR ORDERED COURIER`; `YOU SAID IRIS MAKES RAINBOW, BUT PROJECTOR HAS PRISM`; `YOU SAID IRIS AGREED, BUT IRIS DID NOT AGREE`. The contradictions additionally require Iris's interview. Repeating a challenge never counts twice.
+- The Mayor admits taking the prism to fix a broken projector and preserve the tourist spectacle. Return to Nara with the package. Her final question deals only `YES`, `NO`, `MAYBE`, `I DUNNO`, each producing its own ending and credits.
+
+No wrong answer permanently closes a path. The knowledge book gives the current lead and distinguishes words, claims, confirmed facts and their sources. Restart clears all progress.
